@@ -18,11 +18,11 @@ This is a collection of UI components for Android.
 ## Install Package
 
 ```kotlin
-implementation("com.github.tomorrw:Android-Project-Startup:Carousel:$version")
-implementation("com.github.tomorrw:Android-Project-Startup:Components:$version")
-implementation("com.github.tomorrw:Android-Project-Startup:EventListing:$version")
-implementation("com.github.tomorrw:Android-Project-Startup:ListDisplay:$version")
-implementation("com.github.tomorrw:Android-Project-Startup:QrCode:$version")
-implementation("com.github.tomorrw:Android-Project-Startup:VideoPlayer:$version")
+implementation("com.github.tomorrw:Android-Ui-Components:Carousel:$version")
+implementation("com.github.tomorrw:Android-Ui-Components:Components:$version")
+implementation("com.github.tomorrw:Android-Ui-Components:EventListing:$version")
+implementation("com.github.tomorrw:Android-Ui-Components:ListDisplay:$version")
+implementation("com.github.tomorrw:Android-Ui-Components:QrCode:$version")
+implementation("com.github.tomorrw:Android-Ui-Components:VideoPlayer:$version")
 ```
 `❗️ Don't Forget adding maven("https://jitpack.io")`
