@@ -27,6 +27,6 @@ rootProject.name = "uiComponents"
 include(":EventListing")
 include(":Components")
 include(":ListDisplay")
-//include(":Carousel")
+include(":Carousel")
 //include(":QrCode")
 include(":VideoPlayer")
