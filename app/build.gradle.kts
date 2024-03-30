@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":EventListing"))
+//    implementation(project(":EventListing"))
 //    implementation(project(":ListDisplay"))
 
     implementation(libraries.compose.ui)

@@ -3,7 +3,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven("https://jitpack.io")
+//        maven("https://jitpack.io")
     }
 }
 dependencyResolutionManagement {
@@ -22,7 +22,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "uiComponents"
 //demoApp
-include(":app")
+//include(":app")
 //modules
 //include(":EventListing")
 include(":Components")
