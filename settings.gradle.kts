@@ -24,9 +24,9 @@ rootProject.name = "uiComponents"
 //demoApp
 include(":app")
 //modules
-include(":EventListing")
+//include(":EventListing")
 include(":Components")
 //include(":ListDisplay")
-include(":Carousel")
-include(":QrCode")
-include(":VideoPlayer")
+//include(":Carousel")
+//include(":QrCode")
+//include(":VideoPlayer")
