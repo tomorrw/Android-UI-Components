@@ -4,7 +4,7 @@ apply plugin: 'signing' // Required for signing the artifacts
 ext {
     PUBLISH_GROUP_ID = 'com.tomorrow.uiComponents'
     PUBLISH_VERSION = '1.0.0'
-    PUBLISH_ARTIFACT_ID = project.name.replaceAll("-", "")
+    PUBLISH_ARTIFACT_ID = project.name.replaceAll(" ", "-")
 }
 // Android Source Jar task to include both Java and Kotlin source code
 tasks.register('androidSourcesJar', Jar) {
