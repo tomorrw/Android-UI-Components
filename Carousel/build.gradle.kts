@@ -4,7 +4,7 @@ plugins {
 }
 
 rootProject.extra.apply {
-    set("PUBLISH_ARTIFACT_ID", "carousel")
+    set("PUBLISH_ARTIFACT_ID", "Carousel")
 }
 
 apply(from = "$rootDir/scripts/publish.gradle")
