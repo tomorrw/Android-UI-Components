@@ -16,7 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven("https://jitpack.io")
+//        maven("https://jitpack.io")
     }
 
 }
@@ -26,7 +26,7 @@ include(":app")
 //modules
 include(":EventListing")
 include(":Components")
-include(":ListDisplay")
-//include(":Carousel")
-//include(":QrCode")
+//include(":ListDisplay")
+include(":Carousel")
+include(":QrCode")
 include(":VideoPlayer")
