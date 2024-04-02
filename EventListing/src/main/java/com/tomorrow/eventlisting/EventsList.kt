@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -168,6 +169,11 @@ private fun Header(
     selectedLocation: String,
     onSelectedLocation: (String) -> Unit,
 ) {
+    val daysScrollState: LazyListState = rememberLazyListState()
+    LaunchedEffect(key1 = "") {
+        daysScrollState.scrollToItem(days.indexOf(selectedDay))
+    }
+
     CompositionLocalProvider(
         LocalDensity provides Density(LocalDensity.current.density, 1f)
     ) {
@@ -205,14 +211,16 @@ private fun Header(
                 .offset(y = -headerOffset)
                 .background(MaterialTheme.colorScheme.surface)
         ) {
-            Row(
+            LazyRow(
                 Modifier
                     .fillMaxWidth()
                     .padding(bottom = 12.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                state = daysScrollState
             ) {
-                days.forEach {
+                items(days) { it ->
                     Column(Modifier
+                        .padding(end = if (days.count() > 5) 16.dp else 0.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(
                             if (it == selectedDay) MaterialTheme.colorScheme.background else androidx.compose.material.MaterialTheme.colors.surface
@@ -228,7 +236,7 @@ private fun Header(
 
                         Text(
                             it.dayOfMonth.toString(),
-                            style = MaterialTheme.typography.titleLarge.copy(color)
+                            style = MaterialTheme.typography.titleMedium.copy(color)
                         )
                         Text(
                             getMonthFormatter.format(it),
