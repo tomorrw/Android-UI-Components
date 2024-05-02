@@ -18,11 +18,21 @@ This is a collection of UI components for Android.
 ## Install Package
 
 ```kotlin
-implementation("com.github.tomorrw.Android-Ui-Components:Carousel:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:Components:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:EventListing:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:ListDisplay:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:QrCode:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:VideoPlayer:$version")
+implementation("com.github.tomorrw.Android-Ui-Components:carousel:$version")
+implementation("com.github.tomorrw.Android-Ui-Components:components:$version")
+implementation("com.github.tomorrw.Android-Ui-Components:eventlisting:$version")
+implementation("com.github.tomorrw.Android-Ui-Components:listdisplay:$version")
+implementation("com.github.tomorrw.Android-Ui-Components:qrcode:$version")
+implementation("com.github.tomorrw.Android-Ui-Components:videoplayer:$version")
 ```
-`❗️ Don't Forget adding maven("https://jitpack.io")`
+`❗️ Don't Forget to add`
+```kotlin
+maven {
+    name = it
+    url = uri("https://maven.pkg.github.com/tomorrw/Android-UI-Components")
+    credentials {
+        username = envValues['USERNAME']
+        password = envValues['TOKEN']
+    }
+}
+```
