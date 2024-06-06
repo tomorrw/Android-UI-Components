@@ -19,6 +19,7 @@ data class EventCardStyle(
     val subtitleStyle: TextStyle,
     val iconColor: Color,
     val tagStyle: TextStyle,
+    val tagBackgroundColor: Color? = null,
     val speakerTextStyle: TextStyle,
     override val imageBackgroundColor: Color
 ): CardStyle(

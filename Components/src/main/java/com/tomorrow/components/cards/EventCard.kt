@@ -21,10 +21,12 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.tomorrow.components.others.TagText
@@ -46,6 +48,8 @@ fun EventCard(
     speakers: List<EventSpeaker>,
     onClick: () -> Unit,
     tag: String? = null,
+    tagBackground: Color? = null,
+    tagTextStyle: androidx.compose.ui.text.TextStyle? = MaterialTheme.typography.titleSmall.copy(color = Color.White),
     styles: EventCardStyle = CardStyleDefault.eventCardStyleDefault(),
     rightIcon: @Composable () -> Unit = { Spacer(modifier = Modifier) }
 ) = Box(modifier = modifier
@@ -171,6 +175,10 @@ fun EventCard(
     Column(
         modifier = Modifier.align(Alignment.BottomEnd)
     ) {
-        if (tag != null) TagText(text = tag) else Spacer(Modifier)
+        if (tag != null) TagText(
+            text = tag,
+            textStyle = styles.tagStyle,
+            backgroundColor = styles.tagBackgroundColor
+        ) else Spacer(Modifier)
     }
 }
