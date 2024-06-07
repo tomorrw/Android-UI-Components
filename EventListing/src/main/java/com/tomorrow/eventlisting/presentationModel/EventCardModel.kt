@@ -16,9 +16,7 @@ open class EventCardModel(
     open val location: String,
     // the tag will update on recomposition
     open val getTag: @Composable () -> Tag?,
-    open val minutesAttended: Int? = null,
     open val color: Color? = null,
-    open val isMinutesDisplayed: Boolean = false,
     open val onClick: (id: String) -> Unit = {},
     ) {
     data class Tag(
