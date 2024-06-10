@@ -143,6 +143,7 @@ fun EventsList(
 
                 items(filteredEvents, key = { it.hashCode() }) { e ->
                     Column(Modifier.animateItemPlacement()) {
+
                         eventCard(e)
 
                         Spacer(Modifier.size(16.dp))

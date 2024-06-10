@@ -31,11 +31,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.tomorrow.components.others.TagText
 
-data class EventSpeaker(
-    val speakerName: String,
-    val speakerImage: String,
-)
-
 @Composable
 fun EventCard(
     modifier: Modifier = Modifier,
@@ -45,11 +40,9 @@ fun EventCard(
     endTime: String,
     location: String,
     day: String? = null,
-    speakers: List<EventSpeaker>,
+    cardFooter: @Composable () -> Unit = {},
     onClick: () -> Unit,
     tag: String? = null,
-    tagBackground: Color? = null,
-    tagTextStyle: androidx.compose.ui.text.TextStyle? = MaterialTheme.typography.titleSmall.copy(color = Color.White),
     styles: EventCardStyle = CardStyleDefault.eventCardStyleDefault(),
     rightIcon: @Composable () -> Unit = { Spacer(modifier = Modifier) }
 ) = Box(modifier = modifier
@@ -131,34 +124,7 @@ fun EventCard(
                 )
             }
 
-
-            if (speakers.isNotEmpty()) {
-
-                Column {
-                    Spacer(Modifier.height(8.dp))
-                    speakers.map {
-                        Spacer(Modifier.height(8.dp))
-
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Image(
-                                painter =  rememberAsyncImagePainter(model = it.speakerImage),
-                                contentDescription = "speaker image",
-                                modifier = Modifier
-                                    .clip(CircleShape)
-                                    .size(18.dp)
-                                    .background(styles.imageBackgroundColor)
-                            )
-                            Text(
-                                text = it.speakerName,
-                                style = styles.speakerTextStyle,
-                                modifier = Modifier
-                                    .padding(start = 4.dp)
-                                    .align(Alignment.CenterVertically)
-                            )
-                        }
-                    }
-                }
-            }
+            cardFooter()
 
             Spacer(Modifier.height(2.dp))
         }

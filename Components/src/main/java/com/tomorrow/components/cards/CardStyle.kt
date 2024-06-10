@@ -7,7 +7,7 @@ import androidx.compose.ui.text.TextStyle
 
 open class CardStyle(
     open val backgroundColor: Color,
-    open val imageBackgroundColor: Color,
+    open val imageBackgroundColor: Color = Color.Transparent,
     open val titleStyle: TextStyle,
     open val descriptionStyle: TextStyle
 )
@@ -20,11 +20,8 @@ data class EventCardStyle(
     val iconColor: Color,
     val tagStyle: TextStyle,
     val tagBackgroundColor: Color? = null,
-    val speakerTextStyle: TextStyle,
-    override val imageBackgroundColor: Color
 ): CardStyle(
     backgroundColor = backgroundColor,
-    imageBackgroundColor = imageBackgroundColor,
     titleStyle = titleStyle,
     descriptionStyle = subtitleStyle
 )
@@ -38,7 +35,5 @@ object CardStyleDefault{
         subtitleStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
         iconColor = MaterialTheme.colorScheme.surfaceVariant,
         tagStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurfaceVariant),
-        speakerTextStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.primary),
-        imageBackgroundColor = MaterialTheme.colorScheme.surface
     )
 }

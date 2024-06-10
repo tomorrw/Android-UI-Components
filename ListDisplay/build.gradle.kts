@@ -45,7 +45,6 @@ dependencies {
     implementation(project(":Components"))
 
     implementation(libraries.compose.ui)
-    implementation(libraries.compose.foundation)
     implementation(libraries.compose.ui.graphics)
     implementation(libraries.compose.ui.tooling.preview)
     implementation(libraries.compose.material)
