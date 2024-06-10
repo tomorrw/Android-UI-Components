@@ -43,7 +43,6 @@ android {
 
 dependencies {
     implementation(project(":Components"))
-    implementation("com.github.tomorrw.Android-Project-Startup:ReadViewModel:1.0.0")
 
     implementation(libraries.compose.ui)
     implementation(libraries.compose.foundation)
@@ -61,4 +60,6 @@ dependencies {
     implementation(libraries.koin.core)
     implementation(libraries.koin.android)
     implementation(libraries.koin.compose)
+    implementation("com.tomorrow.projectStartup:readviewmodel:1.0.11")
+
 }
