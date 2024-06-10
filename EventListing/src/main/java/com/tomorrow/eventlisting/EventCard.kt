@@ -13,8 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tomorrow.components.cards.CardStyleDefault
 import com.tomorrow.eventlisting.presentationModel.EventCardModel
-import com.tomorrow.eventlisting.presentationModel.isNow
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import com.tomorrow.components.cards.EventCard as Card
 
@@ -23,9 +21,10 @@ private val dayFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d")
 
 
 @Composable
-fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: @Composable (String) -> Unit = {}) {
+fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: @Composable (String) -> Unit = {}, carFooter: @Composable () -> Unit = {}) {
 
     event?.let {
+        val tag = it.getTag()
         Card(
             modifier = modifier,
             eventName = event.title,
@@ -34,8 +33,8 @@ fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: 
             endTime = event.endDate.format(formatter),
             day = event.startDate.format(dayFormatter),
             location = event.location,
-            speakers = event.speakers,
-            tag = if (event.isNow()) "NOW" else if (event.hasAttended) "ATTENDED" else null,
+            cardFooter = carFooter,
+            tag = tag?.text,
             onClick = { event.onClick(event.id) },
             rightIcon = { rightIcon(event.id) },
             styles = CardStyleDefault.eventCardStyleDefault().copy(

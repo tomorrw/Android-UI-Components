@@ -21,18 +21,15 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.tomorrow.components.others.TagText
-
-data class EventSpeaker(
-    val speakerName: String,
-    val speakerImage: String,
-)
 
 @Composable
 fun EventCard(
@@ -43,7 +40,7 @@ fun EventCard(
     endTime: String,
     location: String,
     day: String? = null,
-    speakers: List<EventSpeaker>,
+    cardFooter: @Composable () -> Unit = {},
     onClick: () -> Unit,
     tag: String? = null,
     styles: EventCardStyle = CardStyleDefault.eventCardStyleDefault(),
@@ -127,34 +124,7 @@ fun EventCard(
                 )
             }
 
-
-            if (speakers.isNotEmpty()) {
-
-                Column {
-                    Spacer(Modifier.height(8.dp))
-                    speakers.map {
-                        Spacer(Modifier.height(8.dp))
-
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Image(
-                                painter =  rememberAsyncImagePainter(model = it.speakerImage),
-                                contentDescription = "speaker image",
-                                modifier = Modifier
-                                    .clip(CircleShape)
-                                    .size(18.dp)
-                                    .background(styles.imageBackgroundColor)
-                            )
-                            Text(
-                                text = it.speakerName,
-                                style = styles.speakerTextStyle,
-                                modifier = Modifier
-                                    .padding(start = 4.dp)
-                                    .align(Alignment.CenterVertically)
-                            )
-                        }
-                    }
-                }
-            }
+            cardFooter()
 
             Spacer(Modifier.height(2.dp))
         }
@@ -171,6 +141,10 @@ fun EventCard(
     Column(
         modifier = Modifier.align(Alignment.BottomEnd)
     ) {
-        if (tag != null) TagText(text = tag) else Spacer(Modifier)
+        if (tag != null) TagText(
+            text = tag,
+            textStyle = styles.tagStyle,
+            backgroundColor = styles.tagBackgroundColor
+        ) else Spacer(Modifier)
     }
 }

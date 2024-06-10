@@ -16,11 +16,12 @@ import androidx.compose.ui.unit.dp
 fun TagText(
     text: String,
     textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(color = Color.White),
+    backgroundColor: Color? = null,
     modifier: Modifier = Modifier
 ) = Text(
     modifier = modifier
         .clip(RoundedCornerShape(4.dp))
-        .background(MaterialTheme.colorScheme.primary.copy(0.6f))
+        .background(backgroundColor ?: MaterialTheme.colorScheme.primary.copy(0.6f))
         .padding(horizontal = 8.dp)
         .padding(vertical = 4.dp),
     text = text,
