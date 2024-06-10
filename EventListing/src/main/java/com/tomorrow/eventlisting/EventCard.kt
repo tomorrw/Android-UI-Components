@@ -21,7 +21,7 @@ private val dayFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d")
 
 
 @Composable
-fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: @Composable (String) -> Unit = {}, carFooter: @Composable () -> Unit = {}) {
+fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: @Composable (String) -> Unit = {}, cardFooter: @Composable () -> Unit = {}) {
 
     event?.let {
         val tag = it.getTag()
@@ -33,7 +33,7 @@ fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: 
             endTime = event.endDate.format(formatter),
             day = event.startDate.format(dayFormatter),
             location = event.location,
-            cardFooter = carFooter,
+            cardFooter = cardFooter,
             tag = tag?.text,
             onClick = { event.onClick(event.id) },
             rightIcon = { rightIcon(event.id) },
