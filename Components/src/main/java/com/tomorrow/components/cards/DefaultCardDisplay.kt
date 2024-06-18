@@ -27,12 +27,7 @@ fun DefaultCardDisplay(
     onClick: () -> Unit,
     title: String,
     subtitle: String,
-    style: CardStyle = CardStyle(
-        backgroundColor = MaterialTheme.colorScheme.background,
-        titleStyle = MaterialTheme.typography.titleLarge.copy(color = MaterialTheme.colorScheme.primary),
-        descriptionStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
-        imageBackgroundColor = MaterialTheme.colorScheme.surface,
-    )
+    style: CardStyle = CardStyleDefault.inlineCardDisplayStyle()
 ) = Row(
     Modifier
         .clip(RoundedCornerShape(8.dp))

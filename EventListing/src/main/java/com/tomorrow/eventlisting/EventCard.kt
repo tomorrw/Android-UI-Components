@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.tomorrow.components.cards.CardStyle
 import com.tomorrow.components.cards.CardStyleDefault
+import com.tomorrow.components.cards.EventCardStyle
 import com.tomorrow.eventlisting.presentationModel.EventCardModel
 import java.time.format.DateTimeFormatter
 import com.tomorrow.components.cards.EventCard as Card
@@ -21,7 +23,13 @@ private val dayFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d")
 
 
 @Composable
-fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: @Composable (String) -> Unit = {}, cardFooter: @Composable () -> Unit = {}) {
+fun EventCard(
+    modifier: Modifier = Modifier,
+    event: EventCardModel?,
+    rightIcon: @Composable (String) -> Unit = {},
+    cardFooter: @Composable () -> Unit = {},
+    style: EventCardStyle = CardStyleDefault.eventCardStyleDefault(),
+) {
 
     event?.let {
         val tag = it.getTag()
@@ -37,7 +45,7 @@ fun EventCard(modifier: Modifier = Modifier, event: EventCardModel?, rightIcon: 
             tag = tag?.text,
             onClick = { event.onClick(event.id) },
             rightIcon = { rightIcon(event.id) },
-            styles = CardStyleDefault.eventCardStyleDefault().copy(
+            styles = style.copy(
                 backgroundColor = event.color ?: MaterialTheme.colorScheme.background,
             ),
         )

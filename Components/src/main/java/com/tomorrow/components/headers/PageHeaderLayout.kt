@@ -34,9 +34,9 @@ fun PageHeaderLayout(
     onBackPress: (() -> Unit)? = null,
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     titleStyle: TextStyle = MaterialTheme.typography.headlineSmall,
-    subtitleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = Color(0xFF6594BD)),
+    subtitleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
     content: @Composable () -> Unit,
-    ) = Column(modifier.fillMaxHeight()) {
+) = Column(modifier.fillMaxHeight()) {
     CompositionLocalProvider(
         LocalDensity provides Density(LocalDensity.current.density, 1f)
     ) {
@@ -59,8 +59,6 @@ fun PageHeaderLayout(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = it, style = titleStyle)
-
-                        AppSeparator(Modifier.width(72.dp))
                     }
                 }
                 subtitle?.let {

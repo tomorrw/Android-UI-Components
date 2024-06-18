@@ -47,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.coerceIn
 import androidx.compose.ui.unit.dp
@@ -66,6 +67,20 @@ private val getMonthFormatter = DateTimeFormatter.ofPattern("MMM")
 @Composable
 fun EventsList(
     events: List<EventCardModel>,
+    style: HeaderStyle = HeaderStyle(
+        dropDownStyle = DropDownStyle(
+            backgroundColor = MaterialTheme.colorScheme.background,
+            textStyle = LocalTextStyle.current,
+            menuBackgroundColor = MaterialTheme.colorScheme.background,
+            menuTextStyle = LocalTextStyle.current
+        ),
+        dayListStyle = DayListStyle(
+            dayColor = androidx.compose.material.MaterialTheme.colors.primaryVariant,
+            selectedDayColor = MaterialTheme.colorScheme.primary,
+            dayContainerColor = MaterialTheme.colorScheme.surface,
+            selectedDayContainerColor = MaterialTheme.colorScheme.background
+        )
+    ),
     state: PullRefreshState = rememberPullRefreshState(refreshing = false, onRefresh = { }),
     isRefreshing: Boolean = false,
     lazyListState: LazyListState = rememberLazyListState(),
@@ -118,6 +133,7 @@ fun EventsList(
                 Column(modifier = Modifier.fillParentMaxHeight()) {
                     Header(
                         lazyListState,
+                        style,
                         eventsByLocation,
                         days,
                         selectedDay,
@@ -131,6 +147,7 @@ fun EventsList(
                 stickyHeader {
                     Header(
                         lazyListState,
+                        style,
                         eventsByLocation,
                         days,
                         selectedDay,
@@ -162,6 +179,20 @@ fun EventsList(
 @Composable
 private fun Header(
     lazyListState: LazyListState,
+    style: HeaderStyle = HeaderStyle(
+        dropDownStyle = DropDownStyle(
+            backgroundColor = MaterialTheme.colorScheme.background,
+            textStyle = LocalTextStyle.current,
+            menuBackgroundColor = MaterialTheme.colorScheme.background,
+            menuTextStyle = LocalTextStyle.current
+        ),
+        dayListStyle = DayListStyle(
+            dayColor = androidx.compose.material.MaterialTheme.colors.primaryVariant,
+            selectedDayColor = MaterialTheme.colorScheme.primary,
+            dayContainerColor = MaterialTheme.colorScheme.surface,
+            selectedDayContainerColor = MaterialTheme.colorScheme.background
+        )
+    ),
     eventsByLocation: Map<String, List<EventCardModel>>,
     days: List<LocalDate>,
     selectedDay: LocalDate?,
@@ -219,20 +250,21 @@ private fun Header(
                 state = daysScrollState
             ) {
                 items(days) {
-                    Column(Modifier
-                        .padding(end = if (days.count() > 5) 16.dp else 0.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(
-                            if (it == selectedDay) MaterialTheme.colorScheme.background else androidx.compose.material.MaterialTheme.colors.surface
-                        )
-                        .clickable { onDaySelected(it) }
-                        .padding(8.dp)
-                        .width(40.dp),
+                    Column(
+                        Modifier
+                            .padding(end = if (days.count() > 5) 16.dp else 0.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(
+                                if (it == selectedDay) style.dayListStyle.selectedDayContainerColor else style.dayListStyle.dayContainerColor
+                            )
+                            .clickable { onDaySelected(it) }
+                            .padding(8.dp)
+                            .width(40.dp),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         val color =
-                            if (selectedDay == it) MaterialTheme.colorScheme.primary else androidx.compose.material.MaterialTheme.colors.primaryVariant
+                            if (selectedDay == it) style.dayListStyle.selectedDayColor else style.dayListStyle.dayColor
 
                         Text(
                             it.dayOfMonth.toString(),
@@ -266,11 +298,12 @@ private fun Header(
                         .menuAnchor()
                         .fillMaxWidth()
                         .height(50.dp),
+                    textStyle = style.dropDownStyle.textStyle,
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = MaterialTheme.colorScheme.background,
-                        unfocusedContainerColor = MaterialTheme.colorScheme.background,
-                        disabledContainerColor = MaterialTheme.colorScheme.background,
+                        focusedContainerColor = style.dropDownStyle.backgroundColor,
+                        unfocusedContainerColor = style.dropDownStyle.backgroundColor,
+                        disabledContainerColor = style.dropDownStyle.backgroundColor,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent,
@@ -280,14 +313,14 @@ private fun Header(
                 DropdownMenu(
                     modifier = Modifier
                         .exposedDropdownSize()
-                        .background(MaterialTheme.colorScheme.background),
+                        .background(style.dropDownStyle.menuBackgroundColor),
                     expanded = isLocationFilterExpanded,
                     onDismissRequest = { isLocationFilterExpanded = false }
                 ) {
                     eventsByLocation.forEach { item ->
                         Text(
                             text = item.key,
-                            color = MaterialTheme.colorScheme.primary,
+                            style = style.dropDownStyle.menuTextStyle,
                             modifier = Modifier
                                 .clickable {
                                     onSelectedLocation(item.key)
@@ -307,3 +340,22 @@ private fun Header(
 }
 
 private fun getCurrentEventIndex(list: List<EventCardModel>): Int = list.indexOfFirst { it.isNow() }
+
+data class DropDownStyle(
+    val backgroundColor: Color,
+    val textStyle: TextStyle,
+    val menuBackgroundColor: Color,
+    val menuTextStyle: TextStyle,
+)
+
+data class HeaderStyle(
+    val dropDownStyle: DropDownStyle,
+    val dayListStyle: DayListStyle,
+)
+
+data class DayListStyle(
+    val dayColor: Color,
+    val selectedDayColor: Color,
+    val dayContainerColor: Color,
+    val selectedDayContainerColor: Color,
+)

@@ -34,18 +34,7 @@ fun InlineHighlightedCard(
     avatar: String? = null,
     detailText: String? = null,
     onClick: () -> Unit = {},
-    style: CardStyle = CardStyle(
-        backgroundColor = MaterialTheme.colorScheme.onPrimary,
-        imageBackgroundColor = MaterialTheme.colorScheme.background,
-        titleStyle = MaterialTheme.typography.titleMedium.copy(
-            color = MaterialTheme.colorScheme.primary,
-            fontSize = 16.sp
-        ),
-        descriptionStyle = MaterialTheme.typography.bodyLarge.copy(
-            color = (Color(0xFF6594BD)),
-            fontSize = 14.sp
-        )
-    )
+    style: CardStyle = CardStyleDefault.inlineHighlightedCardDefaultStyle()
 ) {
     Box(
         modifier = modifier

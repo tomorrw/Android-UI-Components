@@ -16,6 +16,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.snapper.ExperimentalSnapperApi
@@ -25,6 +27,7 @@ class OnBoardingItem(
     val title: String,
     val body: String,
     val buttons: @Composable (ColumnScope) -> Unit,
+    val style: OnBoardingCarouselItemStyle? = null
 )
 
 @OptIn(ExperimentalSnapperApi::class)
@@ -32,6 +35,7 @@ class OnBoardingItem(
 fun OnBoardingCarousel(
     modifier: Modifier = Modifier,
     listState: LazyListState,
+    dotColor: Color = MaterialTheme.colors.secondary,
     items: List<OnBoardingItem>,
 ) {
     val firstVisibleItem: State<Int> =
@@ -58,7 +62,11 @@ fun OnBoardingCarousel(
                 OnBoardingCarouselItem(
                     modifier = Modifier.fillParentMaxWidth(),
                     title = it.title,
-                    body = it.body
+                    body = it.body,
+                    style = it.style ?: OnBoardingCarouselItemStyle(
+                        titleStyle = MaterialTheme.typography.h4.copy(color = MaterialTheme.colors.primary),
+                        bodyStyle = MaterialTheme.typography.body1.copy(MaterialTheme.colors.secondary),
+                    )
                 )
             }
         }
@@ -71,7 +79,9 @@ fun OnBoardingCarousel(
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 for (i in items.indices) {
-                    CarouselDotIndex(isSelected = firstVisibleItem.value == i)
+                    CarouselDotIndex(
+                        dotColor = dotColor.copy(alpha = if (firstVisibleItem.value == i) 1f else 0.2f)
+                    )
                 }
             }
         }
@@ -87,19 +97,23 @@ fun OnBoardingCarousel(
 
 @Composable
 private fun CarouselDotIndex(
-    isSelected: Boolean
+    dotColor: Color = MaterialTheme.colors.secondary,
 ) = Box(
     Modifier
         .clip(RoundedCornerShape(50.dp))
         .size(8.dp)
-        .background(MaterialTheme.colors.secondary.copy(alpha = if (isSelected) 1f else 0.2f))
+        .background(dotColor)
 )
 
 @Composable
 private fun OnBoardingCarouselItem(
     title: String,
     body: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    style: OnBoardingCarouselItemStyle = OnBoardingCarouselItemStyle(
+        titleStyle = MaterialTheme.typography.h4.copy(color = MaterialTheme.colors.primary),
+        bodyStyle = MaterialTheme.typography.body1.copy(MaterialTheme.colors.secondary),
+    )
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -108,16 +122,19 @@ private fun OnBoardingCarouselItem(
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.h4,
-            color = MaterialTheme.colors.primary,
+            style = style.titleStyle,
             textAlign = TextAlign.Center
         )
         Spacer(Modifier.height(16.dp))
         Text(
             text = body,
-            style = MaterialTheme.typography.body1,
-            color = androidx.compose.material3.MaterialTheme.colorScheme.secondary,
+            style = style.bodyStyle,
             textAlign = TextAlign.Center
         )
     }
 }
+
+data class OnBoardingCarouselItemStyle(
+    val titleStyle: TextStyle,
+    val bodyStyle: TextStyle,
+)
