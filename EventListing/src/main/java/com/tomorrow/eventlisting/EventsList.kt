@@ -67,20 +67,7 @@ private val getMonthFormatter = DateTimeFormatter.ofPattern("MMM")
 @Composable
 fun EventsList(
     events: List<EventCardModel>,
-    style: HeaderStyle = HeaderStyle(
-        dropDownStyle = DropDownStyle(
-            backgroundColor = MaterialTheme.colorScheme.background,
-            textStyle = LocalTextStyle.current,
-            menuBackgroundColor = MaterialTheme.colorScheme.background,
-            menuTextStyle = LocalTextStyle.current
-        ),
-        dayListStyle = DayListStyle(
-            dayColor = androidx.compose.material.MaterialTheme.colors.primaryVariant,
-            selectedDayColor = MaterialTheme.colorScheme.primary,
-            dayContainerColor = MaterialTheme.colorScheme.surface,
-            selectedDayContainerColor = MaterialTheme.colorScheme.background
-        )
-    ),
+    style: HeaderStyle = HeaderStyle.defaultHeaderStyle(),
     state: PullRefreshState = rememberPullRefreshState(refreshing = false, onRefresh = { }),
     isRefreshing: Boolean = false,
     lazyListState: LazyListState = rememberLazyListState(),
