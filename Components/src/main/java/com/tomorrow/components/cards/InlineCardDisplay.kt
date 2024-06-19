@@ -34,12 +34,7 @@ fun InlineCardDisplay(
     avatar: String? = null,
     detailText: String? = null,
     onClick: () -> Unit = {},
-    style: CardStyle = CardStyle(
-        backgroundColor = MaterialTheme.colorScheme.background,
-        imageBackgroundColor = MaterialTheme.colorScheme.surface,
-        titleStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary),
-        descriptionStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
-    )
+    style: CardStyle = CardStyleDefault.inlineCardDisplayStyle()
 ) = InlineCardDisplay(
     modifier = modifier,
     nameComposable = name?.let {
@@ -63,12 +58,7 @@ fun InlineCardDisplay(
     avatar: String? = null,
     detailText: String? = null,
     onClick: () -> Unit = {},
-    style: CardStyle = CardStyle(
-        backgroundColor = MaterialTheme.colorScheme.background,
-        imageBackgroundColor = MaterialTheme.colorScheme.surface,
-        titleStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary),
-        descriptionStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
-    )
+    style: CardStyle = CardStyleDefault.inlineCardDisplayStyle()
 ) {
     Row(
         modifier = modifier
