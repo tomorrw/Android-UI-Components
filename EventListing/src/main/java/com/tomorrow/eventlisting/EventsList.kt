@@ -351,7 +351,44 @@ data class DropDownStyle(
 data class HeaderStyle(
     val dropDownStyle: DropDownStyle,
     val dayListStyle: DayListStyle,
-)
+) {
+    companion object {
+        @Composable
+        fun defaultHeaderStyle(
+            dropDownStyle: DropDownStyle = defaultDropDownStyle(),
+            dayListStyle: DayListStyle = defaultDayListStyle()
+        ) = HeaderStyle(
+            dropDownStyle = dropDownStyle,
+            dayListStyle = dayListStyle
+        )
+
+        @Composable
+        fun defaultDayListStyle(
+            dayColor: Color = androidx.compose.material.MaterialTheme.colors.primaryVariant,
+            selectedDayColor: Color = MaterialTheme.colorScheme.primary,
+            dayContainerColor: Color = MaterialTheme.colorScheme.surface,
+            selectedDayContainerColor: Color = MaterialTheme.colorScheme.background
+        ) = DayListStyle(
+            dayColor = dayColor,
+            selectedDayColor = selectedDayColor,
+            dayContainerColor = dayContainerColor,
+            selectedDayContainerColor = selectedDayContainerColor
+        )
+
+        @Composable
+        fun defaultDropDownStyle(
+            backgroundColor: Color = MaterialTheme.colorScheme.background,
+            textStyle: TextStyle = LocalTextStyle.current,
+            menuBackgroundColor: Color = MaterialTheme.colorScheme.background,
+            menuTextStyle: TextStyle = LocalTextStyle.current
+        ) = DropDownStyle(
+            backgroundColor = backgroundColor,
+            textStyle = textStyle,
+            menuBackgroundColor = menuBackgroundColor,
+            menuTextStyle = menuTextStyle
+        )
+    }
+}
 
 data class DayListStyle(
     val dayColor: Color,

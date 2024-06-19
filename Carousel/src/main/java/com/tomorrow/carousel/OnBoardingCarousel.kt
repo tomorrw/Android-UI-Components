@@ -26,8 +26,8 @@ import dev.chrisbanes.snapper.rememberSnapperFlingBehavior
 class OnBoardingItem(
     val title: String,
     val body: String,
+    val style: OnBoardingCarouselItemStyle? = null,
     val buttons: @Composable (ColumnScope) -> Unit,
-    val style: OnBoardingCarouselItemStyle? = null
 )
 
 @OptIn(ExperimentalSnapperApi::class)
@@ -62,11 +62,11 @@ fun OnBoardingCarousel(
                 OnBoardingCarouselItem(
                     modifier = Modifier.fillParentMaxWidth(),
                     title = it.title,
-                    body = it.body,
                     style = it.style ?: OnBoardingCarouselItemStyle(
                         titleStyle = MaterialTheme.typography.h4.copy(color = MaterialTheme.colors.primary),
                         bodyStyle = MaterialTheme.typography.body1.copy(MaterialTheme.colors.secondary),
-                    )
+                    ),
+                    body = it.body
                 )
             }
         }
