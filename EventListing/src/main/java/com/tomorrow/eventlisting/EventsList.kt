@@ -176,6 +176,7 @@ private fun Header(
 ) {
     val daysScrollState: LazyListState = rememberLazyListState()
     LaunchedEffect(key1 = "") {
+        if(selectedDay == null) return@LaunchedEffect
         daysScrollState.scrollToItem(days.indexOf(selectedDay))
     }
 
