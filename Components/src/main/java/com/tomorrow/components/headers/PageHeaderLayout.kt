@@ -12,12 +12,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.tomorrow.components.others.AppSeparator
 import com.tomorrow.components.buttons.BackButton
@@ -35,6 +41,7 @@ fun PageHeaderLayout(
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     titleStyle: TextStyle = MaterialTheme.typography.headlineSmall,
     subtitleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
+    headerRightCorner: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) = Column(modifier.fillMaxHeight()) {
     CompositionLocalProvider(
@@ -42,6 +49,7 @@ fun PageHeaderLayout(
     ) {
         Row(
             Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(20.dp),
@@ -54,7 +62,7 @@ fun PageHeaderLayout(
             Column {
                 title?.let {
                     Row(
-                        Modifier.fillMaxWidth(),
+                        Modifier,
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -68,6 +76,9 @@ fun PageHeaderLayout(
                         style = subtitleStyle
                     )
                 }
+            }
+            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End) {
+                headerRightCorner()
             }
         }
     }
