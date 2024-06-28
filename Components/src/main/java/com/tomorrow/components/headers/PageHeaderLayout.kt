@@ -41,7 +41,7 @@ fun PageHeaderLayout(
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     titleStyle: TextStyle = MaterialTheme.typography.headlineSmall,
     subtitleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
-    headerRightCorner: @Composable () -> Unit = {},
+    rightCornerContent: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) = Column(modifier.fillMaxHeight()) {
     CompositionLocalProvider(
@@ -78,7 +78,7 @@ fun PageHeaderLayout(
                 }
             }
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End) {
-                headerRightCorner()
+                rightCornerContent()
             }
         }
     }
