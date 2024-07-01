@@ -58,7 +58,7 @@ data class ListDisplayItem(
 ) : ListDisplayItemInterface
 
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun <Item : ListDisplayItemInterface> ListDisplayPage(
     title: String?,
