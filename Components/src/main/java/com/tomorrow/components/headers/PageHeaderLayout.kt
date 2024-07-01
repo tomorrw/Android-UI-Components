@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,7 +50,7 @@ fun PageHeaderLayout(
     titleStyle: TextStyle = MaterialTheme.typography.headlineSmall,
     subtitleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
     colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
-    rightCornerContent: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
     content: @Composable () -> Unit,
 ) = Column(modifier.fillMaxHeight()) {
     CompositionLocalProvider(
@@ -83,9 +84,7 @@ fun PageHeaderLayout(
                     BackButton(onClick = { it() })
                 }
             },
-            actions = {
-                rightCornerContent()
-            },
+            actions = actions,
             colors = colors
         )
     }
@@ -103,7 +102,7 @@ fun PageHeaderLayoutPreview() {
         title = "Title",
         subtitle = "Subtitle , Subtitle Subtitle SubtitleSubtitle Subtitle Subtitle Subtitle v Subtitle v ",
         onBackPress = {},
-        rightCornerContent = {
+        actions = {
             Text("Right corner content")
         },
         content = {
