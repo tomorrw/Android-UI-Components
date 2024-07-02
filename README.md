@@ -18,15 +18,16 @@ This is a collection of UI components for Android.
 ## Install Package
 
 ```kotlin
-implementation("com.github.tomorrw.Android-Ui-Components:carousel:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:components:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:eventlisting:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:listdisplay:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:qrcode:$version")
-implementation("com.github.tomorrw.Android-Ui-Components:videoplayer:$version")
+implementation("com.tomorrow.Android-Ui-Components:carousel:$version")
+implementation("com.tomorrow.Android-Ui-Components:components:$version")
+implementation("com.tomorrow.Android-Ui-Components:eventlisting:$version")
+implementation("com.tomorrow.Android-Ui-Components:listdisplay:$version")
+implementation("com.tomorrow.Android-Ui-Components:qrcode:$version")
+implementation("com.tomorrow.Android-Ui-Components:videoplayer:$version")
 ```
-`❗️ Don't Forget to add`
+`❗️ Don't Forget to add this to your graddle project file`
 ```kotlin
+val envVal = loadEnv("${project.rootProject.projectDir}/.env")
 maven {
     name = it
     url = uri("https://maven.pkg.github.com/tomorrw/Android-UI-Components")
@@ -35,4 +36,24 @@ maven {
         password = envValues['TOKEN']
     }
 }
+
+// a load func 
+fun loadEnv(filePath: String): Map<String, String> {
+    val envMap = mutableMapOf<String, String>()
+    val envFile = Paths.get(filePath).toFile()
+    if (envFile.exists()) {
+        envFile.forEachLine { line ->
+            if (line.contains("=") && !line.startsWith("#")) {
+                val (key, value) = line.split("=", limit = 2)
+                envMap[key.trim()] = value.trim()
+            }
+        }
+    }
+    return envMap
+}
+```
+`❗ Don't Forget to configure your env file`
+```
+USERNAME = Your GitHub UserName goes here
+TOKEN = Generate a github token and paste it it
 ```
