@@ -51,6 +51,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.coerceIn
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tomorrow.components.others.GeneralError
 import com.tomorrow.components.others.PullToRefreshLayout
 import com.tomorrow.eventlisting.presentationModel.EventCardModel
@@ -243,7 +244,7 @@ private fun Header(
 
                         Text(
                             it.dayOfMonth.toString(),
-                            style = MaterialTheme.typography.titleLarge.copy(color)
+                            style = MaterialTheme.typography.titleLarge.copy(color, lineHeight = 14.sp)
                         )
                         Text(
                             getMonthFormatter.format(it),

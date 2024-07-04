@@ -85,8 +85,6 @@ fun InlineHighlightedCard(
                 )
 
                 detailText?.let {
-                    Spacer(modifier = Modifier.height(4.dp))
-
                     Text(
                         text = it,
                         style = style.descriptionStyle,

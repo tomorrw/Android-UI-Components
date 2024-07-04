@@ -31,7 +31,7 @@ object CardStyleDefault {
     @Composable
     fun eventCardStyleDefault(
         backgroundColor: Color = MaterialTheme.colorScheme.background,
-        timingStyle: TextStyle = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.surfaceVariant),
+        timingStyle: TextStyle = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.surfaceVariant, letterSpacing = 0.8.sp),
         titleStyle: TextStyle = MaterialTheme.typography.titleLarge.copy(color = MaterialTheme.colorScheme.primary),
         subtitleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary),
         iconColor: Color = MaterialTheme.colorScheme.surfaceVariant,

@@ -62,52 +62,21 @@ fun EntityDetailHeaderLayout(
             error = painterResource(id = R.drawable.ic_image_default_albumart),
             contentScale = ContentScale.Crop,
         )
-
+        decorativeIcon?.let {
+            Box(
+                modifier = Modifier
+                    .size(16.dp)
+            ) { it() }
+        }
         Row(
             Modifier.padding(top = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AppSeparator(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 21.dp)
-            )
-            val iconSize = with(LocalDensity.current) { 16.dp.toSp() }
             Text(
-                buildAnnotatedString {
-                    append(title)
-                    decorativeIcon?.let {
-                        append(" ")
-                        appendInlineContent("inlineContent", "[icon]")
-                    }
-                },
+                title,
                 style = MaterialTheme.typography.titleLarge.copy(textAlign = TextAlign.Center),
                 modifier = Modifier.padding(horizontal = 8.dp),
-                overflow = TextOverflow.Ellipsis,
-                inlineContent = mapOf(
-                    Pair("inlineContent",
-                        InlineTextContent(
-                            Placeholder(
-                                width = iconSize,
-                                height = iconSize,
-                                placeholderVerticalAlign = PlaceholderVerticalAlign.Center
-                            )
-                        ) { _ ->
-                            decorativeIcon?.let {
-                                Box(
-                                    modifier = Modifier
-                                        .size(16.dp)
-                                ) { it() }
-                            }
-                        }
-                    )
-                )
-            )
-
-            AppSeparator(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 21.dp)
+                maxLines = 2,
             )
         }
         subtitle?.let{
