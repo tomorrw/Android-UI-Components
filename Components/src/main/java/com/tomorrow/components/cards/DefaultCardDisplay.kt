@@ -49,7 +49,7 @@ fun DefaultCardDisplay(
             contentDescription = "icon"
         )
 
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
                 text = title,
                 style = style.titleStyle

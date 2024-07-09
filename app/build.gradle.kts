@@ -66,4 +66,5 @@ dependencies {
     implementation(libraries.koin.core)
     implementation(libraries.koin.android)
     implementation(libraries.koin.compose)
+    implementation(project(":Components"))
 }

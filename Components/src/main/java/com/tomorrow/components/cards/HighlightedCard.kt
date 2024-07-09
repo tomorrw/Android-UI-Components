@@ -77,7 +77,7 @@ fun HighlightedCard(
         )
 
         Column {
-            AppSeparator(Modifier.width(72.dp).padding(vertical = 12.dp))
+            AppSeparator(Modifier.width(72.dp).padding(vertical = 6.dp))
             Text(
                 text = description,
                 style = style.descriptionStyle

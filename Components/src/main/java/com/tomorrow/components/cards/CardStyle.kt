@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 open class CardStyle(
@@ -69,7 +70,11 @@ object CardStyleDefault {
         backgroundColor: Color = MaterialTheme.colorScheme.background,
         imageBackgroundColor: Color = MaterialTheme.colorScheme.surface,
         titleStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary),
-        descriptionStyle: TextStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.secondary)
+        descriptionStyle: TextStyle = MaterialTheme.typography.bodyLarge.copy(
+            color = MaterialTheme.colorScheme.secondary,
+            lineHeight = 18.sp,
+            fontWeight = FontWeight.Light
+        )
     ) = CardStyle(
         backgroundColor = backgroundColor,
         imageBackgroundColor = imageBackgroundColor,

@@ -303,11 +303,11 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
                         if (!shouldHideHeaders) stickyHeader { it.key.display() }
 
                         itemsIndexed(it.value) { innerIndex, item ->
-                            separator?.let {
-                                if (!shouldHideHeaders || innerIndex != 0) it()
-                            }
-
                             itemDisplay(item)
+
+                            separator?.let {separator ->
+                                if (innerIndex != it.value.size - 1 ) separator()
+                            }
                         }
                     }
 

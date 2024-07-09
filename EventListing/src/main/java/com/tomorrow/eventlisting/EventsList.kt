@@ -273,7 +273,7 @@ private fun Header(
                     modifier = Modifier
                         .menuAnchor()
                         .fillMaxWidth()
-                        .height(50.dp),
+                        .height(60.dp),
                     textStyle = style.dropDownStyle.textStyle,
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.colors(
@@ -306,7 +306,7 @@ private fun Header(
                                 .padding(horizontal = 16.dp)
                                 .padding(vertical = 8.dp)
                         )
-                    }
+                    } 
                 }
             }
 
@@ -354,7 +354,7 @@ data class HeaderStyle(
         @Composable
         fun defaultDropDownStyle(
             backgroundColor: Color = MaterialTheme.colorScheme.background,
-            textStyle: TextStyle = LocalTextStyle.current,
+            textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
             menuBackgroundColor: Color = MaterialTheme.colorScheme.background,
             menuTextStyle: TextStyle = LocalTextStyle.current
         ) = DropDownStyle(
