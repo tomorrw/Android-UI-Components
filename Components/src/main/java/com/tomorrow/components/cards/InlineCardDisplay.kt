@@ -77,7 +77,6 @@ fun InlineCardDisplay(
                     modifier = Modifier
                         .clip(CircleShape)
                         .size(48.dp)
-                        .border(1.dp, Color(0xFFDAE6F1), CircleShape)
                         .background(
                             color = if (avatar.isNotEmpty())
                                 style.backgroundColor
@@ -93,7 +92,7 @@ fun InlineCardDisplay(
                 }
             }
 
-            Spacer(Modifier.width(16.dp))
+            Spacer(Modifier.width(8.dp))
 
             Column(
                 modifier = Modifier,

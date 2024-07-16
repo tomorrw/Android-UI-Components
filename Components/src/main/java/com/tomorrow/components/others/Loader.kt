@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Loader(
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.secondary,
+    color: Color = MaterialTheme.colorScheme.primary,
     backgroundColor: Color = Color.Transparent
 ) {
     Box(

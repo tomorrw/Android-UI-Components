@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.tomorrow.components.others.AppSeparator
 
@@ -31,13 +33,14 @@ fun HighlightedCard(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
+    date: String? = null,
     image: String? = null,
     onClick: () -> Unit,
     style: CardStyle = CardStyle(
         backgroundColor = MaterialTheme.colorScheme.background,
         imageBackgroundColor = MaterialTheme.colorScheme.surface,
         titleStyle = MaterialTheme.typography.headlineSmall,
-        descriptionStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary)
+        descriptionStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.secondary, lineHeight = 18.sp)
     )
 ) = Box(
     modifier = modifier
@@ -55,6 +58,7 @@ fun HighlightedCard(
         image?.let {
             AsyncImage(
                 modifier = Modifier
+                    .padding(top = 8.dp)
                     .fillMaxWidth()
                     .aspectRatio(16f / 9f)
                     .clip(RoundedCornerShape(8.dp))
@@ -73,13 +77,17 @@ fun HighlightedCard(
         )
 
         Column {
-            Spacer(modifier = Modifier.height(24.dp))
-            AppSeparator(Modifier.width(72.dp))
-            Spacer(modifier = Modifier.height(24.dp))
+            AppSeparator(Modifier.width(72.dp).padding(vertical = 6.dp))
             Text(
                 text = description,
                 style = style.descriptionStyle
             )
+            date?.let {
+                Text(
+                    text = it,
+                    style = style.descriptionStyle
+                )
+            }
         }
     }
 }
@@ -87,11 +95,18 @@ fun HighlightedCard(
 @Composable
 @Preview()
 fun HighlightedCardPreview() {
-    InlineCardDisplay(
-        name = "John Doe",
-        avatar = "https://i.pravatar.cc/300",
-        detailText = "Patient",
-        onClick = {}
-    )
+    Column(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+    ) {
+        HighlightedCard(
+            title = "John Doe",
+            image = "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+            description = "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+            date = "12 may 2021",
+            onClick = {}
+        )
+
+    }
 }
 

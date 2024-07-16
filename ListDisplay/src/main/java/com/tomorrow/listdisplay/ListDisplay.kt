@@ -76,6 +76,7 @@ fun <Item : ListDisplayItemInterface> ListDisplayPage(
     viewModel: ListDisplayReadViewModel<Item>,
     lazyListState: LazyListState = rememberLazyListState(),
     shouldShowSearchBar: Boolean = true,
+    placeHolder: @Composable (() -> Unit) = { Text("Search") },
     searchValue: MutableState<String> = remember { mutableStateOf("") },
     shouldHideHeaders: Boolean = true,
     header: @Composable (() -> Unit)? = null,
@@ -104,6 +105,7 @@ fun <Item : ListDisplayItemInterface> ListDisplayPage(
             isRefreshing = viewModel.state.isRefreshing,
             listState = lazyListState,
             shouldShowSearchBar = shouldShowSearchBar,
+            placeHolder = placeHolder,
             searchValue = searchValue,
             header = header,
             emptyListView = emptyListView,
@@ -131,6 +133,7 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
     isRefreshing: Boolean = false,
     listState: LazyListState = rememberLazyListState(),
     shouldShowSearchBar: Boolean = true,
+    placeHolder: @Composable (() -> Unit) = { Text("Search") },
     searchValue: MutableState<String> = remember { mutableStateOf("") },
     header: @Composable (() -> Unit)? = null,
     emptyListView: @Composable (() -> Unit)? = null,
@@ -151,6 +154,7 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
     isRefreshing = isRefreshing,
     listState = listState,
     shouldShowSearchBar = shouldShowSearchBar,
+    placeHolder = placeHolder,
     searchValue = searchValue,
     shouldHideHeaders = true,
     header = header,
@@ -185,6 +189,7 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
     isRefreshing: Boolean = false,
     listState: LazyListState = rememberLazyListState(),
     shouldShowSearchBar: Boolean = true,
+    placeHolder: @Composable (() -> Unit) = { Text("Search") },
     searchValue: MutableState<String> = remember { mutableStateOf("") },
     header: @Composable (() -> Unit)? = null,
     shouldHideHeaders: Boolean = false,
@@ -252,7 +257,7 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
                     Icons.Default.Search, contentDescription = "", modifier = Modifier.size(24.dp)
                 )
             },
-            placeholder = { Text("Search") },
+            placeholder = { placeHolder() },
             trailingIcon = {
                 if (searchValue.value.isNotBlank()) {
                     IconButton(onClick = {
@@ -298,11 +303,11 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
                         if (!shouldHideHeaders) stickyHeader { it.key.display() }
 
                         itemsIndexed(it.value) { innerIndex, item ->
-                            separator?.let {
-                                if (!shouldHideHeaders || innerIndex != 0) it()
-                            }
-
                             itemDisplay(item)
+
+                            separator?.let {separator ->
+                                if (innerIndex != it.value.size - 1 ) separator()
+                            }
                         }
                     }
 

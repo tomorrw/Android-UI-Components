@@ -51,6 +51,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.coerceIn
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tomorrow.components.others.GeneralError
 import com.tomorrow.components.others.PullToRefreshLayout
 import com.tomorrow.eventlisting.presentationModel.EventCardModel
@@ -243,7 +244,7 @@ private fun Header(
 
                         Text(
                             it.dayOfMonth.toString(),
-                            style = MaterialTheme.typography.titleLarge.copy(color)
+                            style = MaterialTheme.typography.titleLarge.copy(color, lineHeight = 14.sp)
                         )
                         Text(
                             getMonthFormatter.format(it),
@@ -272,7 +273,7 @@ private fun Header(
                     modifier = Modifier
                         .menuAnchor()
                         .fillMaxWidth()
-                        .height(50.dp),
+                        .height(60.dp),
                     textStyle = style.dropDownStyle.textStyle,
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.colors(
@@ -305,7 +306,7 @@ private fun Header(
                                 .padding(horizontal = 16.dp)
                                 .padding(vertical = 8.dp)
                         )
-                    }
+                    } 
                 }
             }
 
@@ -353,7 +354,7 @@ data class HeaderStyle(
         @Composable
         fun defaultDropDownStyle(
             backgroundColor: Color = MaterialTheme.colorScheme.background,
-            textStyle: TextStyle = LocalTextStyle.current,
+            textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
             menuBackgroundColor: Color = MaterialTheme.colorScheme.background,
             menuTextStyle: TextStyle = LocalTextStyle.current
         ) = DropDownStyle(

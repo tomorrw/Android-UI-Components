@@ -89,6 +89,8 @@ fun GeneralError(
                         )
                     }
                 }
+
+                Spacer(Modifier.height(50.dp))
             }
         }
     })

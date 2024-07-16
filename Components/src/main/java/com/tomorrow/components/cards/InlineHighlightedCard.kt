@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -51,28 +52,24 @@ fun InlineHighlightedCard(
             .background(style.backgroundColor)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            avatar?.let {
-                Box(
-                    modifier = Modifier
-                        .padding(14.dp)
-                        .clip(CircleShape)
-                        .size(75.dp)
-                        .border(0.3.dp, Color(0xFFDAE6F1), CircleShape)
-                        .background(
-                            shape = CircleShape,
-                            color = if (avatar.isNotEmpty())
-                                style.imageBackgroundColor
-                            else
-                                Color(0xFFD3E2F0)
-                        ),
-                ) {
-                    AsyncImage(
-                        model = avatar,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop
-                    )
-                }
+            Box(
+                modifier = Modifier
+                    .padding(14.dp)
+                    .clip(CircleShape)
+                    .size(75.dp)
+                    .background(
+                        shape = CircleShape,
+                        color = style.imageBackgroundColor
+                    ),
+            ) {
+                AsyncImage(
+                    modifier = Modifier.fillMaxSize(),
+                    model = avatar,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop
+                )
             }
+
 
             Column(
                 modifier = Modifier,
@@ -85,8 +82,6 @@ fun InlineHighlightedCard(
                 )
 
                 detailText?.let {
-                    Spacer(modifier = Modifier.height(4.dp))
-
                     Text(
                         text = it,
                         style = style.descriptionStyle,

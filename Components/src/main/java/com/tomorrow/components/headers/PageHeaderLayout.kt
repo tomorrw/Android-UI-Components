@@ -39,7 +39,8 @@ import com.tomorrow.components.buttons.BackButton
  * if no function was passed for onBackPress
  * the button will not be displayed
  * */
-@ExperimentalMaterial3Api
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PageHeaderLayout(
     modifier: Modifier = Modifier,
@@ -70,7 +71,6 @@ fun PageHeaderLayout(
                     }
                     subtitle?.let {
                         Text(
-                            modifier = Modifier.padding(top = 7.dp),
                             text = it,
                             style = subtitleStyle,
                             maxLines = 1
