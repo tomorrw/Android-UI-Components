@@ -210,8 +210,6 @@ fun <Item : ListDisplayItemInterface> ListDisplay(
     },
     searchAlgorithm: (String, String) -> Double
 ) {
-    Spacer(Modifier.height(24.dp))
-
     val scope = rememberCoroutineScope()
     val localDensity = LocalDensity.current
 

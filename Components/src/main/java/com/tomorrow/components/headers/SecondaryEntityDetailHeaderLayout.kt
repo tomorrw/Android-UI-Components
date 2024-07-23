@@ -46,8 +46,7 @@ fun SecondaryEntityDetailHeaderLayout(
     content: LazyListScope.() -> Unit,
 ) = Column {
     TopAppBar(
-        modifier = Modifier.fillMaxWidth(),
-        windowInsets = WindowInsets(12.dp, 12.dp, 12.dp, 0.dp),
+        modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
         title = { Text(title) },
         navigationIcon = { BackButton(onClick = { onBack() }) },
         actions = actions,

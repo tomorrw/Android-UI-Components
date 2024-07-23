@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +33,13 @@ import com.tomorrow.components.headers.PageHeaderLayout
 @Composable
 fun GeneralError(
     modifier: Modifier = Modifier,
+    icon: @Composable () -> Unit = {
+        Icon(
+            modifier = Modifier.size(50.dp),
+            painter = painterResource(R.drawable.baseline_error_outline_24),
+            contentDescription = "Error Icon",
+        )
+    },
     message: String,
     description: String,
     buttonText: String? = "Try Again",
@@ -56,11 +64,7 @@ fun GeneralError(
                 verticalArrangement = Arrangement.spacedBy(4.dp),
                 modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
-                Icon(
-                    modifier = Modifier.size(50.dp),
-                    painter = painterResource(R.drawable.baseline_error_outline_24),
-                    contentDescription = "Error Icon",
-                )
+                icon()
 
                 Spacer(Modifier.height(8.dp))
 
