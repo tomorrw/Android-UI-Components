@@ -63,8 +63,7 @@ fun EntityDetailHeaderLayout(
     return Box {
         Column {
             TopAppBar(
-                modifier = Modifier.fillMaxWidth(),
-                windowInsets = WindowInsets(12.dp, 12.dp, 12.dp, 0.dp),
+                modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
                 title = {},
                 navigationIcon = { BackButton(onClick = { onBack() }) },
                 actions = { ShareButton(webLink = shareLink) },

@@ -78,7 +78,7 @@ fun PageHeaderLayout(
                     }
                 }
             },
-            modifier = Modifier,
+            modifier = Modifier.padding(top = 15.dp),
             navigationIcon = {
                 onBackPress?.let {
                     BackButton(onClick = { it() })
