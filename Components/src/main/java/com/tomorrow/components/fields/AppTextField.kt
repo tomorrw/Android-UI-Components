@@ -22,6 +22,7 @@ fun AppTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     supportingText: @Composable (() -> Unit)? = null,
+    prefix: @Composable (() -> Unit)? = null,
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(
         focusedBorderColor = MaterialTheme.colorScheme.primary,
         focusedLeadingIconColor = MaterialTheme.colorScheme.primary,
@@ -38,6 +39,7 @@ fun AppTextField(
         label = { Text(label) },
         shape = RoundedCornerShape(8.dp),
         supportingText = supportingText,
+        prefix = prefix,
         leadingIcon = icon?.let {
             {
                 Icon(
